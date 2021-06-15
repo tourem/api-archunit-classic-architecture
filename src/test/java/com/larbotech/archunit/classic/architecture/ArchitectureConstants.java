@@ -1,5 +1,10 @@
 package com.larbotech.archunit.classic.architecture;
 
+import com.tngtech.archunit.core.domain.JavaClasses;
+import com.tngtech.archunit.core.importer.ClassFileImporter;
+import com.tngtech.archunit.core.importer.ImportOption;
+import org.junit.jupiter.api.BeforeAll;
+
 public class ArchitectureConstants {
 
     // Suffixes
@@ -22,8 +27,14 @@ public class ArchitectureConstants {
     // Explanations
     public static final String ANNOTATED_EXPLANATION = "Classes in %s package should be annotated with %s";
 
-    private ArchitectureConstants() {
+    static JavaClasses classes;
 
+    @BeforeAll
+    public static void setUp() {
+        classes = new ClassFileImporter()
+                .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
+                //.withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_ARCHIVES)
+                .importPackages(DEFAULT_PACKAGE);
     }
 
 }
