@@ -1,8 +1,9 @@
 package com.larbotech.archunit.classic.architecture;
 
 
-import com.bnpp.zephyr.example.archunit.service.ClientService;
-import com.bnpp.zephyr.example.archunit.service.impl.ClientServiceImpl;
+
+import com.larbotech.archunit.classic.service.ClientService;
+import com.larbotech.archunit.classic.service.impl.ClientServiceImpl;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
