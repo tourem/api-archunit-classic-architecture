@@ -4,6 +4,7 @@ package com.larbotech.archunit.classic.service.impl;
 import java.util.Optional;
 
 import com.larbotech.archunit.classic.service.ClientService;
+import com.larbotech.archunit.classic.service.ServiceBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import com.larbotech.archunit.classic.model.Client;
 import com.larbotech.archunit.classic.repository.ClientRepository;
 
 @Service
-public class ClientServiceImpl implements ClientService {
+public class ClientServiceImpl extends ServiceBase implements ClientService {
 
     private final ClientRepository clientRepository;
 
