@@ -101,4 +101,39 @@ class GeneralCodingRulesTest extends ArchitectureConstants {
                 .beAssignableTo(Serializable.class)
                 .check(classes);
     }
+    
+      //No Get API should return List or Set. This is to enforce pagination
+    @Test
+    void no_get_api_should_return_list_or_set() {
+        noMethods()
+                .that()
+                .areAnnotatedWith("org.springframework.web.bind.annotation.GetMapping")
+                .should()
+                .haveRawReturnType(List.class)
+                .orShould()
+                .haveRawReturnType(Set.class)
+                .check(classes);
+    }
+
+    //Entities should not be directly exposed in the REST controllers
+    @Test
+    void no_rest_controller_should_access_entity_class() {
+        noClasses()
+                .that()
+                .areAnnotatedWith(RestController.class)
+                .should()
+                .accessClassesThat()
+                .resideInAnyPackage("com.bnpp.zephyr.example.archunit.model")
+                .check(classes);
+    }
+
+    //Favor Unchecked exception over checked exception
+    @Test
+    void no_checked_exceptions() {
+        noClasses()
+                .should()
+                .beAssignableFrom(Exception.class)
+                .check(classes);
+    }
+
 }
